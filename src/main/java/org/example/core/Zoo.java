@@ -1,20 +1,22 @@
 package org.example.core;
 
-import org.example.Animal.*;
+import org.example.Animal.Animal;
+import org.example.Building.Building;
+import org.example.People.People;
 
 import java.util.*;
 
 public class Zoo {
     private ArrayList<Animal> animals;
-//    private ArrayList<People> people;
-//    private ArrayList<Building> building;
+    private ArrayList<People> people;
+    private ArrayList<Building> buildings;
 
     private boolean isOpen;
 
-    private Zoo(){
+    public Zoo(){
         animals = new ArrayList<>();
-//        people = new ArrayList<>();
-//        building = new ArrayList<>();
+        people = new ArrayList<>();
+        buildings = new ArrayList<>();
         isOpen = false;
     }
 
@@ -44,23 +46,23 @@ public class Zoo {
         return animals;
     }
 
-//    public ArrayList<People> getPeople() {
-//        return people;
-//    }
-//
-//    public ArrayList<Building> getBuilding() {
-//        return building;
-//    }
+    public ArrayList<People> getPeople() {
+        return people;
+    }
+
+    public ArrayList<Building> getBuilding() {
+        return buildings;
+    }
 
     public void addAnimals(Animal animal){
         animals.add(animal);
     }
 
-    public void addPeople(Animal animal){
-        animals.add(animal);
+    public void addPeople(People person){
+        people.add(person);
     }
 
-    public void addBuildings(Animal animal){
-        animals.add(animal);
+    public void addBuildings(Building building){
+        buildings.add(building);
     }
 }
