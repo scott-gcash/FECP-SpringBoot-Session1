@@ -1,6 +1,6 @@
 package org.example.core;
 
-import org.example.Zoo.Animal.*;
+import org.example.Animal.*;
 
 import java.util.*;
 
