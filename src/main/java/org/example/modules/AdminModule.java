@@ -1,5 +1,5 @@
 // Core/Zoo.java
-package Core;
+package org.example.modules;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ import java.util.Scanner;
  * This class handles the setup, opening, closing, and staff management of the zoo.
  * It provides a text-based interface for the Zoo Authorize Person.
  */
-public class Zoo {
+public class AdminModule {
 
     private static boolean isZooOpen = false; // Tracks if the zoo is currently open
     private static final Scanner scanner = new Scanner(System.in); // Scanner for user input

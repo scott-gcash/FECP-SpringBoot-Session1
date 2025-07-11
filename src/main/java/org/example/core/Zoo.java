@@ -6,15 +6,15 @@ import java.util.*;
 
 public class Zoo {
     private ArrayList<Animal> animals;
-    private ArrayList<People> people;
-    private ArrayList<Building> building;
+//    private ArrayList<People> people;
+//    private ArrayList<Building> building;
 
     private boolean isOpen;
 
     private Zoo(){
         animals = new ArrayList<>();
-        people = new ArrayList<>();
-        building = new ArrayList<>();
+//        people = new ArrayList<>();
+//        building = new ArrayList<>();
         isOpen = false;
     }
 
@@ -44,13 +44,13 @@ public class Zoo {
         return animals;
     }
 
-    public ArrayList<People> getPeople() {
-        return people;
-    }
-
-    public ArrayList<Building> getBuilding() {
-        return building;
-    }
+//    public ArrayList<People> getPeople() {
+//        return people;
+//    }
+//
+//    public ArrayList<Building> getBuilding() {
+//        return building;
+//    }
 
     public void addAnimals(Animal animal){
         animals.add(animal);
