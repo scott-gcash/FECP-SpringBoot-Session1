@@ -1,4 +1,4 @@
-package org.example.Zoo.Animal;
+package org.example.Animal;
 
 public class Falcon extends Bird{
 
