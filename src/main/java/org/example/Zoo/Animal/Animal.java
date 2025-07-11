@@ -1,6 +1,6 @@
 package org.example.Zoo.Animal;
 
-abstract class Animal {
+public abstract class Animal {
 
     private boolean healthy;
     private String name;
