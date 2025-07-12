@@ -63,9 +63,13 @@ public class ZooModule {
                                 .map(b -> (Enclosure) b)
                                         .toList();
 
+        if(enclosures.isEmpty()){
+            System.out.println("There are no enclosures yet.");
+            return;
+        }
+
         System.out.println("===Zoo Enclosure===");
         System.out.println("Choose Enclosure:");
-        // To do: Handler if enclosure is empty
         for(int i = 0; i < enclosures.size(); i++){
             Enclosure e = enclosures.get(i);
             System.out.printf("%d. %s (%d)\n", i+1, e.getSpecies(), e.getAnimals().size());
@@ -73,14 +77,23 @@ public class ZooModule {
 
         choice = scanner.nextInt();
         scanner.nextLine();
-        // To do: Checker if choice is not in choices
+
+        if (choice < 0 || choice >= enclosures.size()){
+            System.out.println("Enclosure does not exist. Please try again.");
+            return;
+        }
 
         Enclosure selected = enclosures.get(choice-1);
 
         System.out.printf("Animals in %s enclosure\n", selected.getSpecies());
         List<Animal> animals = selected.getAnimals();
+
+        if(animals.isEmpty()){
+            System.out.println("There are no animals in this enclosure");
+            return;
+        }
+
         int j = 0;
-        // To do: Handler if animals is empty
         for (Animal animal: animals){
             System.out.printf("%d. %s - %s\n", j+1, animal.getName(), animal.getSpecies());
             j++;
@@ -92,15 +105,21 @@ public class ZooModule {
         choiceAnimal = scanner.nextInt();
         scanner.nextLine();
 
+        if (choiceAnimal < 0 || choiceAnimal >= animals.size()){
+            System.out.println("Animal not in the selection. Please try again");
+            return;
+        }
+
         Animal selectedAnimal = animals.get(choiceAnimal-1);
 
         System.out.printf("Would you like to feed %s? (yes/no)", selectedAnimal.getName());
         String feedChoice = scanner.nextLine();
-        // To do: Checker if choice is not in choices
 
         if (feedChoice.equals("yes")){
             selectedAnimal.eat();
             selectedAnimal.makeSound();
+        } else{
+            System.out.printf("Thank you for visiting %s enclosure", selected.getSpecies());
         }
     }
 
@@ -113,6 +132,6 @@ public class ZooModule {
     }
 
     public void leaveZoo(){
-
+        System.out.println("You left the Zoo. See you again next time.");
     }
 }
