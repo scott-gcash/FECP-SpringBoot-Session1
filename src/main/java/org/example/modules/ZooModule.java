@@ -22,9 +22,10 @@ public class ZooModule {
                     .map(v -> (Visitors) v)
                         .toList();
 
-        for (Visitors v : visitors) {
+        //Easy access to Visitors, used for faster Checking and Testing
+        /*for (Visitors v : visitors) {
             System.out.printf("%s. %s \n", v.getTicketNumber(), v.getName());
-        }
+        }*/
 
         System.out.println("Enter your ticket code to enter the zoo: ");
         String code = scanner.nextLine();
