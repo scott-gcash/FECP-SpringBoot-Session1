@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Tickets {
-    private HashMap<String, String> ticketMap;
+    private static HashMap<String, String> ticketMap;
 
     public Tickets(HashMap<String, String> ticketMap) {this.ticketMap = ticketMap;}
 
-    public HashMap<String, String> getTicketsMap() {return ticketMap;}
+    public static HashMap<String, String> getTicketsMap() {return ticketMap;}
 
     public void setTicketsMap(HashMap<String, String> ticketsMap) {this.ticketMap = ticketsMap;}
 
