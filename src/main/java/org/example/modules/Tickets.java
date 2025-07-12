@@ -6,7 +6,11 @@ import java.util.Random;
 public class Tickets {
     private HashMap<String, String> ticketMap;
 
-    public Tickets(HashMap<String, String> ticketMap) {this.ticketMap = ticketMap;}
+    //public Tickets(HashMap<String, String> ticketMap) {this.ticketMap = ticketMap;}
+
+    public Tickets() {
+        ticketMap = new HashMap<>();
+    }
 
     public HashMap<String, String> getTicketsMap() {return ticketMap;}
 
