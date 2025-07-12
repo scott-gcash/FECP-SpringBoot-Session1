@@ -1,12 +1,11 @@
 package org.example.modules;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class TicketModule {
-    public static void startTicket(Tickets tickets) {
-
+    public static void start() {
         Scanner scanner = new Scanner(System.in);
+        Tickets tickets = Tickets.getInstance();
 
         System.out.println("=== WELCOME TO THE ZOO TICKET SHOP ===");
         System.out.println("Visit Animal Enclosures (Elephant, Lion, Owl)");
