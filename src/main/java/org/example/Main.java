@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.Animal.Elephant;
 import org.example.Animal.Lion;
+import org.example.Animal.Owl;
 import org.example.Animal.Parrot;
 import org.example.Building.Building;
 import org.example.Building.Enclosure;
@@ -30,6 +31,8 @@ public class Main {
         zoo.addAnimals(simba);
         zoo.addAnimals(dumbo);
         zoo.addAnimals(parry);
+        //Setting 1 animal as sick
+        zoo.getAnimals().getFirst().setHealthy(false);
 
         // Instantiate Buildings
         Enclosure pachydermEnclosure = new Enclosure("Pachyderm");

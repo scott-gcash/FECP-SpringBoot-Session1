@@ -3,9 +3,12 @@ package org.example.modules;
 import org.example.Animal.Animal;
 import org.example.Building.Enclosure;
 import org.example.Building.Shop;
+import org.example.People.Veterinarian;
 import org.example.People.Visitors;
 import org.example.core.Zoo;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ZooModule {
@@ -233,6 +236,89 @@ public class ZooModule {
     }
 
     public void visitHospital(){
+        int choice;
+
+        //Added a Vet to People for testing
+        zoo.addPeople(new Veterinarian("Dr. Scott"));
+
+        List<Animal> sickAnimals;
+        List<Animal> healedAnimals = new ArrayList<>();
+
+        List<Veterinarian> veterinarians = zoo.getPeople().stream()
+                .filter(v -> v instanceof Veterinarian)
+                    .map(v -> (Veterinarian) v)
+                        .toList();
+
+        sickAnimals = zoo.getAnimals().stream()
+                .filter(sA -> !sA.isHealthy())
+                .toList();
+
+        System.out.println("=== Zoo Hospital Monitor ===");
+        System.out.println("1. View Sick Animals");
+        System.out.println("2. View Healed Animals");
+        System.out.println("3. Attend Science Lecture");
+        System.out.println("4. Heal Animals (Veterinarian)");
+        System.out.println("5. Exit");
+
+        boolean isExit = false;
+
+        do{
+            System.out.print("Choose an option: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    //View Sick Animals
+                    sickAnimals = zoo.getAnimals().stream()
+                            .filter(sA -> !sA.isHealthy())
+                                .toList();
+
+                    System.out.println("Sick Animals Currently in Hospital:");
+                    for (Animal sA : sickAnimals) {
+                        System.out.printf("- %s \n", sA.getName());
+                    }
+                    if(sickAnimals.isEmpty()){
+                        System.out.println("There are currently no sick animals.");
+                    }
+                    break;
+                case 2:
+                    //View Heal Animals
+                    LocalDateTime date = LocalDateTime.now();
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDate = date.format(format);
+
+                    System.out.println("Healed Animals with Timestamps:");
+                    for (Animal hA : healedAnimals) {
+                        System.out.printf("- %s %s\n", hA.getName(), formattedDate);
+                    }
+                    if(healedAnimals.isEmpty()){
+                        System.out.println("There are currently no healed animals.");
+                    }
+                    break;
+                case 3:
+                    //Attend Science Lecture
+                    veterinarians.getFirst().lecture();
+                    break;
+                case 4:
+                    //Heal Sick Animals
+                    veterinarians.getFirst().heal();
+                    if (sickAnimals.isEmpty()){
+                        System.out.println("There are currently no sick animals.");
+                    } else {
+                        for (Animal sA : sickAnimals) {
+                            sA.setHealthy(true);
+                            healedAnimals.add(sA);
+                        }
+                    }
+                    break;
+                case 5:
+                    //Leave Hospital
+                    isExit = true;
+                    break;
+            }
+
+        }while(!isExit);
 
     }
 
