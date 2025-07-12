@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class TicketModule {
-    public static void startTicket() {
-        HashMap<String, String> ticketMap = new HashMap<>();
-        Tickets tickets = new Tickets(ticketMap);
+    public static void startTicket(Tickets tickets) {
 
         Scanner scanner = new Scanner(System.in);
 

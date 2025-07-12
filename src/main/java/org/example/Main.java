@@ -56,13 +56,16 @@ public class Main {
             System.out.println("3. Zoo Module");
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
-
+          
             choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice){
                 case 1 -> AdminModule.start();
-                case 2 -> TicketModule.startTicket();
+                case 2 -> {
+                    Tickets tickets = new Tickets();
+                    TicketModule.startTicket(tickets);
+                }
                 case 3 -> ZooModule.start();
                 default -> {
                     System.out.println("Exiting Zoo Module...");
@@ -70,5 +73,6 @@ public class Main {
                 }
             }
         }while(!isExit);
+
     }
 }
