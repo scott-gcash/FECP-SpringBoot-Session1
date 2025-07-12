@@ -1,5 +1,6 @@
 package org.example.modules;
 
+import org.example.Animal.Animal;
 import org.example.Building.Enclosure;
 import org.example.core.Zoo;
 import java.util.*;
@@ -55,6 +56,8 @@ public class ZooModule {
     }
 
     public void exploreEnclosure(){
+        int choice;
+
         List<Enclosure> enclosures = zoo.getBuilding().stream()
                         .filter(b -> b instanceof Enclosure)
                                 .map(b -> (Enclosure) b)
@@ -67,7 +70,34 @@ public class ZooModule {
             System.out.printf("%d. %s (%d)\n", i+1, e.getSpecies(), e.getAnimals().size());
         }
 
+        choice = scanner.nextInt();
+        scanner.nextLine();
 
+        Enclosure selected = enclosures.get(choice-1);
+
+        System.out.printf("Animals in %s enclosure\n", selected.getSpecies());
+        List<Animal> animals = selected.getAnimals();
+        int j = 0;
+        for (Animal animal: animals){
+            System.out.printf("%d. %s - %s\n", j+1, animal.getName(), animal.getSpecies());
+            j++;
+        }
+
+        int choiceAnimal;
+
+        System.out.print("Choose an animal: ");
+        choiceAnimal = scanner.nextInt();
+        scanner.nextLine();
+
+        Animal selectedAnimal = animals.get(choiceAnimal-1);
+
+        System.out.printf("Would you like to feed %s? (yes/no)", selectedAnimal.getName());
+        String feedChoice = scanner.nextLine();
+
+        if (feedChoice.equals("yes")){
+            selectedAnimal.eat();
+            selectedAnimal.makeSound();
+        }
     }
 
     public void visitShop(){
