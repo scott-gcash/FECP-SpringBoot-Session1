@@ -13,11 +13,20 @@ public class Zoo {
 
     private boolean isOpen;
 
+    public static Zoo instance;
+
     public Zoo(){
         animals = new ArrayList<>();
         people = new ArrayList<>();
         buildings = new ArrayList<>();
         isOpen = false;
+    }
+
+    public static Zoo getInstance(){
+        if (instance == null){
+            instance = new Zoo();
+        }
+        return instance;
     }
 
     public void openZoo(){

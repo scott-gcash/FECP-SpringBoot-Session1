@@ -13,7 +13,7 @@ public class AdminModule {
     private static boolean isZooOpen = false; // Tracks if the zoo is currently open
     private static final Scanner scanner = new Scanner(System.in); // Scanner for user input
 
-    public static void main(String[] args) {
+    public static void start() {
         System.out.println("Welcome to the Zoo Administration Module!");
         displayAdminMenu();
     }
@@ -59,7 +59,6 @@ public class AdminModule {
                 choice = 0; // Set to 0 to re-display menu
             }
         } while (choice != 5);
-        scanner.close(); // Close the scanner when done
     }
 
     /**
