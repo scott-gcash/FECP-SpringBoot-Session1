@@ -17,6 +17,7 @@ public class ZooModule {
         System.out.println("Enter your ticket code to enter the zoo: ");
         String code = scanner.nextLine();
 
+        // To do: add implementation for adding the validation if code is in hashmap of tickets
         if (code.equals(null)){
             System.out.println("Code does not exist");
             return;
