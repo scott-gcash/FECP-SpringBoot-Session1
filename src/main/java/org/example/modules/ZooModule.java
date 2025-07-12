@@ -2,6 +2,7 @@ package org.example.modules;
 
 import org.example.Animal.Animal;
 import org.example.Building.Enclosure;
+import org.example.People.Visitors;
 import org.example.core.Zoo;
 import java.util.*;
 
@@ -15,12 +16,35 @@ public class ZooModule {
             return;
         }
 
+        boolean codeValid = false;
+
+        List<Visitors> visitors = zoo.getPeople().stream()
+                .filter(v -> v instanceof Visitors)
+                    .map(v -> (Visitors) v)
+                        .toList();
+
+        //Easy access to Visitors, used for faster Checking and Testing
+        /*for (Visitors v : visitors) {
+            System.out.printf("%s. %s \n", v.getTicketNumber(), v.getName());
+        }*/
+
         System.out.println("Enter your ticket code to enter the zoo: ");
         String code = scanner.nextLine();
 
-        // To do: add implementation for adding the validation if code is in hashmap of tickets
-        if (code.equals(null)){
-            System.out.println("Code does not exist");
+        for (Visitors v : visitors) {
+            if (v.getTicketNumber().equalsIgnoreCase(code)) {
+                codeValid = true;
+                System.out.println("========================");
+                System.out.printf("Welcome to the Zoo, %s!\n", v.getName());
+                System.out.println("========================");
+                break;
+            }
+        }
+
+        if(!codeValid) {
+            System.out.println("========================");
+            System.out.println("Code does not exist.");
+            System.out.println("========================");
             return;
         }
 

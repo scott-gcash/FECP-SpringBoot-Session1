@@ -1,25 +1,36 @@
 package org.example.modules;
 
-import java.util.HashMap;
+import org.example.People.Visitors;
+import org.example.core.Zoo;
+
+import java.util.List;
 import java.util.Random;
 
+
 public class Tickets {
-    private static HashMap<String, String> ticketMap;
+    private static Zoo zoo = Zoo.getInstance();
 
-    //public Tickets(HashMap<String, String> ticketMap) {this.ticketMap = ticketMap;}
+    public static Tickets instance;
 
-    public Tickets() {
-        ticketMap = new HashMap<>();
+    public static Tickets getInstance(){
+        if (instance == null){
+            instance = new Tickets();
+        }
+        return instance;
     }
-
-    public static HashMap<String, String> getTicketsMap() {return ticketMap;}
-
-    public void setTicketsMap(HashMap<String, String> ticketsMap) {this.ticketMap = ticketsMap;}
 
     public String validTicketNumber() {
         String ticketNumber = createTicketNumber();
-        while (ticketMap.containsKey(ticketNumber)) {
-            ticketNumber = createTicketNumber();
+
+        List<Visitors> visitors = zoo.getPeople().stream()
+                .filter(v -> v instanceof Visitors)
+                .map(v -> (Visitors) v)
+                .toList();
+
+        for (Visitors v : visitors) {
+            if (v.getTicketNumber().equalsIgnoreCase(ticketNumber)) {
+                ticketNumber = createTicketNumber();
+            }
         }
         return ticketNumber;
     }
@@ -36,7 +47,7 @@ public class Tickets {
 
     public void buyTicket(String name){
         String ticketNumber = validTicketNumber();
-        ticketMap.put(ticketNumber,name);
+        zoo.addPeople(new Visitors(name,ticketNumber));
         System.out.println("Ticket Purchased!");
         System.out.println("Your ticket code is: ".concat(ticketNumber));
         System.out.println("[Ticket added to the system]");
@@ -46,10 +57,10 @@ public class Tickets {
         if (age >= 60){
             System.out.println("You qualify for a SENIOR ticket.");
             System.out.println("Ticket price is Php50.00");
-        } else if (age > 18){
+        } else if (age >= 18){
             System.out.println("You will have a full price ADULT ticket.");
             System.out.println("Ticket price is Php150.00");
-        } else if (age > 6){
+        } else if (age >= 6){
             System.out.println("You qualify for a STUDENT ticket.");
             System.out.println("Ticket price is Php75.00");
         } else if (age >= 0) {
