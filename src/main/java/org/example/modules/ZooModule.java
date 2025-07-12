@@ -104,7 +104,7 @@ public class ZooModule {
         choice = scanner.nextInt();
         scanner.nextLine();
 
-        if (choice < 0 || choice > enclosures.size()){
+        if (choice <= 0 || choice > enclosures.size()){
             System.out.println("Enclosure does not exist. Please try again.");
             return;
         }
@@ -131,7 +131,7 @@ public class ZooModule {
         choiceAnimal = scanner.nextInt();
         scanner.nextLine();
 
-        if (choiceAnimal < 0 || choiceAnimal > animals.size()){
+        if (choiceAnimal <= 0 || choiceAnimal > animals.size()){
             System.out.println("Animal not in the selection. Please try again");
             return;
         }
@@ -145,7 +145,7 @@ public class ZooModule {
             selectedAnimal.eat();
             selectedAnimal.makeSound();
         } else{
-            System.out.printf("Thank you for visiting %s enclosure", selected.getSpecies());
+            System.out.printf("Thank you for visiting %s enclosure\n", selected.getSpecies());
         }
     }
 
@@ -197,7 +197,7 @@ public class ZooModule {
             choice = scanner.nextInt();
             scanner.nextLine();
 
-            if (choice < 0 || choice > productName.size()){
+            if (choice <= 0 || choice > productName.size()){
                 System.out.println("Invalid Input. Try again");
                 return;
             }
