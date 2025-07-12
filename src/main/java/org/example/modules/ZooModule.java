@@ -2,7 +2,9 @@ package org.example.modules;
 
 import org.example.Animal.Animal;
 import org.example.Building.Enclosure;
+import org.example.Building.Shop;
 import org.example.core.Zoo;
+
 import java.util.*;
 
 public class ZooModule {
@@ -105,6 +107,85 @@ public class ZooModule {
     }
 
     public void visitShop(){
+        int choice;
+
+        List<Shop> shops = zoo.getBuilding().stream()
+                .filter(b -> b instanceof Shop)
+                        .map(b -> (Shop)b)
+                                .toList();
+
+        if (shops.isEmpty()){
+            System.out.println("There no shops open in the moment.");
+            return;
+        }
+
+        double total = 0;
+        int index = 1;
+        HashMap<String, Double> cart = new HashMap<>();
+        HashMap<Integer, String> productName = new HashMap<>();
+        HashMap<Integer, Double> productPrice = new HashMap<>();
+
+        System.out.println("=== Zoo Shop ===");
+        System.out.println("Available Products:");
+
+        for (Shop shop: shops){
+            if(!shop.hasProducts()) continue;
+
+            for(Map.Entry<String, Double> product : shop.getProducts().entrySet()){
+                productName.put(index,product.getKey());
+                productPrice.put(index,product.getValue());
+                System.out.printf("%d. %s - ₱%.2f\n", index, product.getKey(), product.getValue());
+                index++;
+            }
+        }
+
+        if(productName.isEmpty() || productPrice.isEmpty()) {
+            System.out.println("No Products on any Shop.");
+            return;
+        }
+
+        boolean isExit = false;
+
+        do{
+            String isCheckout;
+
+            System.out.print("Enter the number of items you want to buy: ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice < 0 || choice > productName.size()){
+                System.out.println("Invalid Input. Try again");
+                return;
+            }
+
+            if(productName.containsKey(choice) || productPrice.containsKey(choice)){
+                String product = productName.get(choice);
+                double price = productPrice.get(choice);
+                cart.put(product, price);
+                total += price;
+            }
+
+            System.out.println("Selected: ");
+            for (Map.Entry<String, Double> product: cart.entrySet()){
+                System.out.printf("%s (₱%.2f)\n", product.getKey(), product.getValue());
+            }
+            System.out.printf("Total: ₱%.2f\n", total);
+
+            System.out.println("Proceed to checkout? (yes/no)");
+            isCheckout = scanner.nextLine();
+
+            if (isCheckout.equals("yes")){
+                System.out.println("Payment Successful!");
+                System.out.println("Receipt:");
+                for (Map.Entry<String, Double> product: cart.entrySet()){
+                    System.out.printf("- %s: ₱%.2f\n", product.getKey(), product.getValue());
+                }
+
+                System.out.printf("Total Paid: ₱%.2f\n", total);
+                isExit = true;
+            }
+        }while(!isExit);
 
     }
 
