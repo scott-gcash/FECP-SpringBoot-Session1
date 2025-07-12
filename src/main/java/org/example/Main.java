@@ -39,7 +39,19 @@ public class Main {
         zoo.addBuildings(pachydermEnclosure);
         zoo.addBuildings(birdEnclosure);
         zoo.addBuildings(felineEnclosure);
-        zoo.addBuildings(new Shop());
+
+        //To do: add classes per shop building
+        Shop gifts = new Shop();
+        Shop food = new Shop();
+        Shop drinks = new Shop();
+        zoo.addBuildings(gifts);
+        zoo.addBuildings(food);
+        zoo.addBuildings(drinks);
+        drinks.addProducts("Soft Drinks", 30.0);
+        food.addProducts("Popcorn", 50.0);
+        gifts.addProducts("Plush Toy", 120.0);
+        gifts.addProducts("Key Chain", 40.0);
+
 
         pachydermEnclosure.addAnimals(dumbo);
         birdEnclosure.addAnimals(parry);
