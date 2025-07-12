@@ -10,7 +10,6 @@ import org.example.Building.Shop;
 import org.example.core.Zoo;
 import org.example.modules.AdminModule;
 import org.example.modules.TicketModule;
-import org.example.modules.Tickets;
 import org.example.modules.ZooModule;
 
 import java.util.Scanner;
@@ -74,10 +73,7 @@ public class Main {
 
             switch (choice){
                 case 1 -> AdminModule.start();
-                case 2 -> {
-                    Tickets tickets = new Tickets();
-                    TicketModule.startTicket(tickets);
-                }
+                case 2 -> TicketModule.start();
                 case 3 -> ZooModule.start();
                 default -> {
                     System.out.println("Exiting Zoo Module...");
