@@ -22,6 +22,7 @@ public class TicketModule {
 
             System.out.print("Enter your age: ");
             int age = scanner.nextInt();
+            scanner.nextLine();
             System.out.println();
             if (age < 0) {
                 System.out.println("Invalid Age, ticket was not purchased.");
