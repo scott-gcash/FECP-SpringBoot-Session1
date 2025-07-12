@@ -11,6 +11,10 @@ public abstract class Animal {
         this.name = name;
     }
 
+    public boolean isHealthy() {return healthy;}
+
+    public void setHealthy(boolean healthy) {this.healthy = healthy;}
+
     public abstract void makeSound();
     public abstract void roam();
 
