@@ -104,7 +104,7 @@ public class ZooModule {
         choice = scanner.nextInt();
         scanner.nextLine();
 
-        if (choice < 0 || choice >= enclosures.size()){
+        if (choice < 0 || choice > enclosures.size()){
             System.out.println("Enclosure does not exist. Please try again.");
             return;
         }
@@ -131,7 +131,7 @@ public class ZooModule {
         choiceAnimal = scanner.nextInt();
         scanner.nextLine();
 
-        if (choiceAnimal < 0 || choiceAnimal >= animals.size()){
+        if (choiceAnimal < 0 || choiceAnimal > animals.size()){
             System.out.println("Animal not in the selection. Please try again");
             return;
         }
