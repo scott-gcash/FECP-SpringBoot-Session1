@@ -65,6 +65,7 @@ public class ZooModule {
 
         System.out.println("===Zoo Enclosure===");
         System.out.println("Choose Enclosure:");
+        // To do: Handler if enclosure is empty
         for(int i = 0; i < enclosures.size(); i++){
             Enclosure e = enclosures.get(i);
             System.out.printf("%d. %s (%d)\n", i+1, e.getSpecies(), e.getAnimals().size());
@@ -72,12 +73,14 @@ public class ZooModule {
 
         choice = scanner.nextInt();
         scanner.nextLine();
+        // To do: Checker if choice is not in choices
 
         Enclosure selected = enclosures.get(choice-1);
 
         System.out.printf("Animals in %s enclosure\n", selected.getSpecies());
         List<Animal> animals = selected.getAnimals();
         int j = 0;
+        // To do: Handler if animals is empty
         for (Animal animal: animals){
             System.out.printf("%d. %s - %s\n", j+1, animal.getName(), animal.getSpecies());
             j++;
@@ -93,6 +96,7 @@ public class ZooModule {
 
         System.out.printf("Would you like to feed %s? (yes/no)", selectedAnimal.getName());
         String feedChoice = scanner.nextLine();
+        // To do: Checker if choice is not in choices
 
         if (feedChoice.equals("yes")){
             selectedAnimal.eat();
