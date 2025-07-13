@@ -1,6 +1,14 @@
 // Core/Zoo.java
 package org.example.modules;
 
+import org.example.Building.Enclosure;
+import org.example.Building.Shop;
+import org.example.People.Handlers;
+import org.example.People.Manager;
+import org.example.People.Vendors;
+import org.example.People.Veterinarian;
+import org.example.core.Zoo;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -86,9 +94,68 @@ public class AdminModule {
      * In a real application, this would involve more detailed configuration.
      */
     private static void setupZoo() {
-        System.out.println("Currently, this is a placeholder.");
-        System.out.println("(Press Enter to return to main menu)");
-        scanner.nextLine(); // Wait for user to press Enter
+        Zoo zoo = Zoo.getInstance();
+
+        // Retrieve EXISTING Enclosures from Zoo
+        Enclosure pachydermEnclosure = zoo.findEnclosureBySpecies("Pachyderm");
+        Enclosure felineEnclosure = zoo.findEnclosureBySpecies("Feline");
+        Enclosure birdEnclosure = zoo.findEnclosureBySpecies("Bird");
+        Shop ticketShop = zoo.findShopByShopType("Ticket Shop");
+        Shop zooShop = zoo.findShopByShopType("Zoo Shop");
+
+
+        System.out.print("Enter your name, Manager: ");
+        String managerName = scanner.nextLine();
+        Manager manager = new Manager(managerName);
+        zoo.addPeople(manager);
+
+        System.out.print("Enter Veterinarian's name: ");
+        String veterinarianName = scanner.nextLine();
+        Veterinarian veterinarian = new Veterinarian(veterinarianName);
+        zoo.addPeople(veterinarian);
+
+        System.out.print("Enter Handler for Pachyderm Enclosure: ");
+        String pachydermHandlerName = scanner.nextLine();
+        Handlers pachydermHandler = new Handlers(pachydermHandlerName, pachydermEnclosure);
+        zoo.addPeople(pachydermHandler);
+
+
+        System.out.print("Enter Handler for Feline Enclosure: ");
+        String felineHandlerName = scanner.nextLine();
+        Handlers felineHandler = new Handlers(felineHandlerName, felineEnclosure);
+        zoo.addPeople(felineHandler);
+
+        System.out.print("Enter Handler for Bird Enclosure: ");
+        String birdHandlerName = scanner.nextLine();
+        Handlers birdHandler = new Handlers(birdHandlerName, birdEnclosure);
+        zoo.addPeople(birdHandler);
+
+        System.out.print("Enter Vendor for Ticket Shop: ");
+        String ticketVendorName = scanner.nextLine();
+        Vendors ticketVendor = new Vendors(ticketVendorName, ticketShop);
+        zoo.addPeople(ticketVendor);
+
+        System.out.print("Enter Vendor for Shop: ");
+        String shopVendorName = scanner.nextLine();
+        Vendors shopVendor = new Vendors(shopVendorName, zooShop);
+        zoo.addPeople(shopVendor);
+
+        System.out.println("\nZoo setup complete! The following people have been added:");
+        for (org.example.People.People person : zoo.getPeople()) {
+            String role = person.getClass().getSimpleName();
+            String association = "";
+            if (person.getLocation() != null) {
+                if (person instanceof Handlers && person.getLocation() instanceof Enclosure) {
+                    Enclosure assignedEnclosure = (Enclosure) person.getLocation();
+                    association = " (Handler for " + assignedEnclosure.getSpecies() + " Enclosure)";
+                } else if (person instanceof Vendors && person.getLocation() instanceof Shop) {
+                    Shop assignedShop = (Shop) person.getLocation();
+                    association = " (Vendor for " + assignedShop.getShopType() + ")";
+                }
+
+                System.out.println("- " + person.getName() + " (" + role + ")" + association);
+            }
+        }
     }
 
     /**
@@ -115,7 +182,7 @@ public class AdminModule {
             System.out.println("The zoo is already open.");
         }
         System.out.println("(Press Enter to return to main menu)");
-        scanner.nextLine(); 
+        scanner.nextLine();
     }
 
     /**
@@ -134,4 +201,8 @@ public class AdminModule {
         System.out.println("(Press Enter to return to main menu)");
         scanner.nextLine(); // Wait for user to press Enter
     }
+
 }
+
+
+
