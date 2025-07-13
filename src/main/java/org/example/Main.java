@@ -10,7 +10,6 @@ import org.example.Building.Shop;
 import org.example.core.Zoo;
 import org.example.modules.AdminModule;
 import org.example.modules.TicketModule;
-import org.example.modules.Tickets;
 import org.example.modules.ZooModule;
 
 import java.util.Scanner;
@@ -47,6 +46,18 @@ public class Main {
         zoo.addBuildings(ticketShop);
         zoo.addBuildings(zooShop);
 
+        //To do: add classes per shop building
+        Shop gifts = new Shop();
+        Shop food = new Shop();
+        Shop drinks = new Shop();
+        zoo.addBuildings(gifts);
+        zoo.addBuildings(food);
+        zoo.addBuildings(drinks);
+        drinks.addProducts("Soft Drinks", 30.0);
+        food.addProducts("Popcorn", 50.0);
+        gifts.addProducts("Plush Toy", 120.0);
+        gifts.addProducts("Key Chain", 40.0);
+
 
         pachydermEnclosure.addAnimals(dumbo);
         birdEnclosure.addAnimals(parry);
@@ -68,10 +79,7 @@ public class Main {
 
             switch (choice){
                 case 1 -> AdminModule.start();
-                case 2 -> {
-                    Tickets tickets = new Tickets();
-                    TicketModule.startTicket(tickets);
-                }
+                case 2 -> TicketModule.start();
                 case 3 -> ZooModule.start();
                 default -> {
                     System.out.println("Exiting Zoo Module...");
