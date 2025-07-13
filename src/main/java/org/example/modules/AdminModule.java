@@ -1,6 +1,7 @@
 // Core/Zoo.java
 package org.example.modules;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -12,10 +13,29 @@ public class AdminModule {
 
     private static boolean isZooOpen = false; // Tracks if the zoo is currently open
     private static final Scanner scanner = new Scanner(System.in); // Scanner for user input
+    private static final String adminUsername = "admin";
+    private static final String adminPassword = "adminadmin";
 
     public static void start() {
-        System.out.println("Welcome to the Zoo Administration Module!");
-        displayAdminMenu();
+        String username;
+        String password;
+        boolean loggedIn = false;
+
+        while (!loggedIn) {
+            System.out.println("\n--- Administrator Login ---");
+            System.out.print("Enter username: ");
+            username = scanner.nextLine();
+            System.out.print("Enter password: ");
+            password = scanner.nextLine();
+
+            if (Objects.equals(username, adminUsername) && Objects.equals(password, adminPassword)) {
+                System.out.println("Login Successful. Welcome!");
+                loggedIn = true;
+                displayAdminMenu();
+            } else {
+                System.out.println("Invalid Credentials. Please try again.");
+            }
+        }
     }
 
     /**
