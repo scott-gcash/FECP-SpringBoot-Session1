@@ -274,12 +274,14 @@ public class ZooModule {
                             .filter(sA -> !sA.isHealthy())
                                 .toList();
 
-                    System.out.println("Sick Animals Currently in Hospital:");
-                    for (Animal sA : sickAnimals) {
-                        System.out.printf("- %s \n", sA.getName());
-                    }
                     if(sickAnimals.isEmpty()){
                         System.out.println("There are currently no sick animals.");
+                    }
+                    else {
+                        System.out.println("Sick Animals Currently in Hospital:");
+                        for (Animal sA : sickAnimals) {
+                            System.out.printf("- %s \n", sA.getName());
+                        }
                     }
                     break;
                 case 2:
@@ -288,12 +290,14 @@ public class ZooModule {
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                     String formattedDate = date.format(format);
 
-                    System.out.println("Healed Animals with Timestamps:");
-                    for (Animal hA : healedAnimals) {
-                        System.out.printf("- %s %s\n", hA.getName(), formattedDate);
-                    }
                     if(healedAnimals.isEmpty()){
                         System.out.println("There are currently no healed animals.");
+                    }
+                    else {
+                        System.out.println("Healed Animals with Timestamps:");
+                        for (Animal hA : healedAnimals) {
+                            System.out.printf("- %s %s\n", hA.getName(), formattedDate);
+                        }
                     }
                     break;
                 case 3:
@@ -306,7 +310,10 @@ public class ZooModule {
                     if (sickAnimals.isEmpty()){
                         System.out.println("There are currently no sick animals.");
                     } else {
+                        System.out.printf("%s begins healing sick animals...\n", veterinarians.getFirst().getName());
                         for (Animal sA : sickAnimals) {
+                            System.out.printf("Healed : %s\n", sA.getName());
+                            System.out.printf("%s has been discharged and returned to the enclosure.\n", sA.getName());
                             sA.setHealthy(true);
                             healedAnimals.add(sA);
                         }
