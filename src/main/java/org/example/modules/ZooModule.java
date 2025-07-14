@@ -17,7 +17,6 @@ public class ZooModule {
 
     public void start(){
         if (!zoo.getIsOpen()) {
-
             System.out.println("Zoo is closed");
             return;
         }
