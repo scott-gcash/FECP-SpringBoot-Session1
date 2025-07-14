@@ -3,10 +3,7 @@ package org.example.modules;
 
 import org.example.Building.Enclosure;
 import org.example.Building.Shop;
-import org.example.People.Handlers;
-import org.example.People.Manager;
-import org.example.People.Vendors;
-import org.example.People.Veterinarian;
+import org.example.People.*;
 import org.example.core.Zoo;
 
 import java.util.Objects;
@@ -20,9 +17,6 @@ import java.util.Scanner;
 public class AdminModule {
     static Zoo zoo = Zoo.getInstance();
     private static final Scanner scanner = new Scanner(System.in); // Scanner for user input
-    private static final String adminUsername = "admin";
-    private static final String adminPassword = "adminadmin";
-
     public static void start() {
         String username;
         String password;
@@ -35,7 +29,8 @@ public class AdminModule {
             System.out.print("Enter password: ");
             password = scanner.nextLine();
 
-            if (Objects.equals(username, adminUsername) && Objects.equals(password, adminPassword)) {
+            AdminUserAccount credential = new AdminUserAccount();
+            if (credential.checkAccountCredential(username,password)) {
                 System.out.println("Login Successful. Welcome!");
                 loggedIn = true;
                 displayAdminMenu();
@@ -140,7 +135,7 @@ public class AdminModule {
         zoo.addPeople(shopVendor);
 
         System.out.println("\nZoo setup complete! The following people have been added:");
-        for (org.example.People.People person : zoo.getPeople()) {
+        for (People person : zoo.getPeople()) {
             String role = person.getClass().getSimpleName();
             String association = "";
             if (person.getLocation() != null) {
