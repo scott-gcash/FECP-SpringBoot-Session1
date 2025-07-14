@@ -2,6 +2,8 @@ package org.example.core;
 
 import org.example.Animal.Animal;
 import org.example.Building.Building;
+import org.example.Building.Enclosure;
+import org.example.Building.Shop;
 import org.example.People.People;
 
 import java.util.*;
@@ -28,6 +30,30 @@ public class Zoo {
         }
         return instance;
     }
+
+    public Enclosure findEnclosureBySpecies(String species) {
+        for (Building building : buildings) {
+            if (building instanceof Enclosure) {
+                Enclosure enclosure = (Enclosure) building;
+                if (enclosure.getSpecies().equalsIgnoreCase(species)) {
+                    return enclosure;
+                }
+            }
+        }
+        return null; // Return null if not found
+    }
+    public Shop findShopByShopType(String shopType) {
+        for (Building building : buildings) {
+            if (building instanceof Shop) {
+                Shop shop = (Shop) building;
+                if (shop.getShopType().equalsIgnoreCase(shopType)) {
+                    return shop;
+                }
+            }
+        }
+        return null; // Return null if not found
+    }
+
 
     public void openZoo(){
         if (isOpen){
