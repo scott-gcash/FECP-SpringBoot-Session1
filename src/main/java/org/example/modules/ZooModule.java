@@ -13,7 +13,8 @@ public class ZooModule {
     private static Zoo zoo = Zoo.getInstance();
 
     public void start(){
-        if (zoo.getIsOpen()) {
+        if (!zoo.getIsOpen()) {
+
             System.out.println("Zoo is closed");
             return;
         }

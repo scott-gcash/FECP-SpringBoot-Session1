@@ -18,8 +18,7 @@ import java.util.Scanner;
  * It provides a text-based interface for the Zoo Authorize Person.
  */
 public class AdminModule {
-
-    private static boolean isZooOpen = false; // Tracks if the zoo is currently open
+    static Zoo zoo = Zoo.getInstance();
     private static final Scanner scanner = new Scanner(System.in); // Scanner for user input
     private static final String adminUsername = "admin";
     private static final String adminPassword = "adminadmin";
@@ -94,7 +93,7 @@ public class AdminModule {
      * In a real application, this would involve more detailed configuration.
      */
     private static void setupZoo() {
-        Zoo zoo = Zoo.getInstance();
+
 
         // Retrieve EXISTING Enclosures from Zoo
         Enclosure pachydermEnclosure = zoo.findEnclosureBySpecies("Pachyderm");
@@ -173,8 +172,8 @@ public class AdminModule {
      * This method changes the zoo's operational status.
      */
     private static void openZoo() {
-        if (!isZooOpen) {
-            isZooOpen = true;
+        if (!zoo.getIsOpen()) {
+            zoo.openZoo();
             System.out.println("\n--- Zoo Status: OPEN ---");
             System.out.println("The zoo is now open for visitors. Welcome!");
         } else {
@@ -190,8 +189,8 @@ public class AdminModule {
      * This method changes the zoo's operational status.
      */
     private static void closeZoo() {
-        if (isZooOpen) {
-            isZooOpen = false;
+        if (zoo.getIsOpen()) {
+            zoo.closeZoo();
             System.out.println("\n--- Zoo Status: CLOSED ---");
             System.out.println("The zoo is now closed. Thank you for visiting!");
         } else {
