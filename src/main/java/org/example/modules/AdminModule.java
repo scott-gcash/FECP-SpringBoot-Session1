@@ -157,9 +157,7 @@ public class AdminModule {
      * This could involve assigning tasks, viewing schedules, etc.
      */
     private static void handleStaff() {
-        System.out.println("Currently, this is a placeholder.");
-        System.out.println("(Press Enter to return to main menu)");
-        scanner.nextLine();
+        HandlerModule.start();
     }
 
     /**

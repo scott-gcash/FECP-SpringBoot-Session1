@@ -8,6 +8,7 @@ import org.example.Building.Building;
 import org.example.Building.Enclosure;
 import org.example.Building.Hospital;
 import org.example.Building.Shop;
+import org.example.People.Handlers;
 import org.example.core.Zoo;
 import org.example.modules.AdminModule;
 import org.example.modules.TicketModule;
@@ -40,6 +41,8 @@ public class Main {
         Enclosure felineEnclosure = new Enclosure("Feline");
         Shop ticketShop = new Shop("Ticket Shop");
         Shop zooShop = new Shop("Zoo Shop");
+        Handlers pachydermHandler = new Handlers("Scott", pachydermEnclosure);
+        zoo.addPeople(pachydermHandler);
 
         zoo.addBuildings(new Hospital());
         zoo.addBuildings(pachydermEnclosure);
