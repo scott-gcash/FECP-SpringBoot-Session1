@@ -14,6 +14,7 @@ public class Handlers extends People{
 
     public Handlers(String name, Building location){
         super(name);
+        assignedEnclosure = (Enclosure) location;
         this.goTo(location);
     }
 
@@ -22,12 +23,15 @@ public class Handlers extends People{
         System.out.println("I feed");
     }
 
-
     public void exercise(){
         System.out.println("I exercise");
     }
 
     public void examine(){
         System.out.println("I examine");
+    }
+
+    public Enclosure getAssignedEnclosure(){
+        return this.assignedEnclosure;
     }
 }
