@@ -38,10 +38,16 @@ public class Main {
         Enclosure pachydermEnclosure = new Enclosure("Pachyderm");
         Enclosure birdEnclosure = new Enclosure("Bird");
         Enclosure felineEnclosure = new Enclosure("Feline");
+        Shop ticketShop = new Shop("Ticket Shop");
+        Shop zooShop = new Shop("Zoo Shop");
+
         zoo.addBuildings(new Hospital());
         zoo.addBuildings(pachydermEnclosure);
         zoo.addBuildings(birdEnclosure);
         zoo.addBuildings(felineEnclosure);
+//        zoo.addBuildings(new Shop());
+        zoo.addBuildings(ticketShop);
+        zoo.addBuildings(zooShop);
 
         //To do: add classes per shop building
         Shop gifts = new Shop();

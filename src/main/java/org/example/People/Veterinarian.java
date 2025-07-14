@@ -11,6 +11,6 @@ public class Veterinarian extends People{
     }
 
     public void lecture(){
-        System.out.println("I gave lecture");
+        System.out.printf("%s gave lecture\n", this.getName());
     }
 }
